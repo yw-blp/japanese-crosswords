@@ -1,6 +1,6 @@
 # Crossword Engine
 
-Daily randomized Hiragana crossword generator using Genki vocabulary.
+Daily randomized Hiragana crossword generator using JLPT word lists (N5 to N3).
 
 ## Setup
 cd engine
