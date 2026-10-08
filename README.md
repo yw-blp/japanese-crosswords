@@ -22,7 +22,7 @@ Raw lists live in `engine/data/raw/` (`n5.csv`, `n4.csv`, `n3.csv`), taken from
 is `engine/data/vocab.json`, produced by `engine/scripts/clean_vocab.py`.
 
 ## Licenses
-- **Code:** MIT (see [LICENSE](LICENSE)).
+- **Code:** MIT (see [LICENSE.txt](LICENSE.txt)).
 - **Vocabulary data** in `engine/data/` and puzzles generated from it:
   CC BY-SA 4.0 (see [DATA_LICENSE.md](DATA_LICENSE.md)). The MIT license does
   not cover this data.
