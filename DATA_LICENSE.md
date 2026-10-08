@@ -16,7 +16,10 @@ This data is adapted from the following works:
 
 1. **JLPT vocabulary lists** by Jonathan Waller, licensed under Creative
    Commons BY (credit required).
-   https://www.tanos.co.uk/jlpt/
+   Lists: https://www.tanos.co.uk/jlpt/
+   License statement: https://www.tanos.co.uk/jlpt/sharing/
+   (archived: https://web.archive.org/web/20260927074436/https://www.tanos.co.uk/jlpt/sharing/)
+   CC BY deed: https://creativecommons.org/licenses/by/4.0/
 
 2. **yomitan-jlpt-vocab** by Stephen Kraus (stephenmk), licensed under
    CC BY-SA 4.0. Files `original_data/n5.csv`, `n4.csv` and `n3.csv` were taken
@@ -36,10 +39,11 @@ This data is adapted from the following works:
 The data was modified from the original files. From `n5.csv`, `n4.csv` and
 `n3.csv` the columns `kana` (used as the puzzle answer) and
 `waller_definition` (used as the clue) were extracted. Entries were filtered to
-hiragana-only answers (entries with characters outside U+3041 to U+3096,
-including katakana, were removed), text was NFC-normalized, duplicate answers
-were removed, and clues were shortened. See `engine/scripts/clean_vocab.py`
-for the exact rules.
+answers of 2 or more characters made up only of hiragana (U+3041 to U+3096).
+Entries containing any other character, including katakana and the long vowel
+mark ー, were removed. Text was NFC-normalized, duplicate answers were removed,
+and clues were shortened. See `engine/scripts/clean_vocab.py` for the exact
+rules.
 
 ## Attribution requirements for apps
 

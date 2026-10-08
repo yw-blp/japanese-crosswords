@@ -28,7 +28,12 @@ is `engine/data/vocab.json`, produced by `engine/scripts/clean_vocab.py`.
   not cover this data.
 
 ## Credits
-- JLPT vocabulary lists by [Jonathan Waller](https://www.tanos.co.uk/jlpt/) (CC BY).
+- JLPT vocabulary lists by [Jonathan Waller](https://www.tanos.co.uk/jlpt/),
+  licensed under Creative Commons Attribution (CC BY). His
+  [sharing page](https://www.tanos.co.uk/jlpt/sharing/) states the license as
+  Creative Commons "BY" without a version number
+  ([archived copy](https://web.archive.org/web/20260927074436/https://www.tanos.co.uk/jlpt/sharing/)).
+  See the [CC BY deed](https://creativecommons.org/licenses/by/4.0/).
 - [yomitan-jlpt-vocab](https://github.com/stephenmk/yomitan-jlpt-vocab) by
   Stephen Kraus (CC BY-SA 4.0).
 - [JMdict](https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project),
