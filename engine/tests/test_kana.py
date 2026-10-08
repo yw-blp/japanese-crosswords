@@ -1,6 +1,6 @@
 import unicodedata
 
-from src.kana import tokenize
+from src.kana import normalize, tokenize
 
 
 def test_one_character_per_cell():
@@ -8,8 +8,9 @@ def test_one_character_per_cell():
     assert len(tokenize("みず")) == 2
 
 
-def test_nfc_form_is_single_codepoint():
-    # が must be one character, not か + combining mark
+def test_normalize_composes_dakuten():
+    # が must be one cell, not か + combining mark
     decomposed = unicodedata.normalize("NFD", "が")
     assert len(decomposed) == 2
-    assert len(unicodedata.normalize("NFC", decomposed)) == 1
+    assert normalize(decomposed) == "が"
+    assert len(tokenize(normalize(decomposed))) == 1

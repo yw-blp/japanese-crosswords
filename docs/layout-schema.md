@@ -43,7 +43,7 @@ from them or display them.
 
 ## Guarantees (the engine promises these)
 - words are sorted by id in ascending order
-- Every word has length >= 3, and length is the number of characters in `answer`
+- Every word has length >= 2, and length is the number of characters in `answer`
 - Intersecting words have a shared character at the intersecting cell
 - No two words have the same `answer`
 - The puzzle is a single connected group: any two words are joined by a chain of linked words
