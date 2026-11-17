@@ -35,7 +35,7 @@ def load_vocab(path: Path | str) -> list[Entry]:
         answer, clue, level = item["answer"], item["clue"], item["level"]
         if not all(isinstance(v, str) for v in (answer, clue, level)):
             raise ValueError(f"{where}: values must be strings")
-        if reason := invalid_reason(answer) is not None:
+        if (reason := invalid_reason(answer)) is not None:
             raise ValueError(f"{where}: bad answer {answer!r} ({reason})")
         if not clue.strip():
             raise ValueError(f"{where}: empty clue")
@@ -62,7 +62,9 @@ class VocabIndex:
         for entry_index, entry in enumerate(self.entries):
             for char_index, char in enumerate(entry.answer):
                 char_location.setdefault(char, []).append((entry_index, char_index))
-        self.char_location = {char: tuple(locations) for char, locations in char_location.items()}
+        self.char_location = {
+            char: tuple(locations) for char, locations in char_location.items()
+        }
         # Two words with the same clue ("blue" for あお and あおい) would be
         # indistinguishable to the player, so the generator avoids pairing them.
         self.clue_keys: tuple[str, ...] = tuple(
@@ -73,7 +75,8 @@ class VocabIndex:
         return len(self.entries)
 
     def entry_indices_with_length(self, low: int, high: int) -> list[int]:
-        return [entry_index
-                for entry_index, entry in enumerate(self.entries)
-                if low <= len(entry.answer) <= high
+        return [
+            entry_index
+            for entry_index, entry in enumerate(self.entries)
+            if low <= len(entry.answer) <= high
         ]

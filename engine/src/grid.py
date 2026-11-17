@@ -47,6 +47,7 @@ class PlacedEntry:
 
 class GridPreview(NamedTuple):
     """What the grid would look like after a legal PlacedEntry."""
+
     crossings: int
     height: int
     width: int
@@ -87,7 +88,9 @@ class Grid:
     def open_cells(self) -> list[Cell]:
         """Cells covered by exactly one word: the places a new word can cross."""
         across, down = self._occupied_by[ACROSS], self._occupied_by[DOWN]
-        return sorted(cell for cell in self._cells if (cell in across) != (cell in down))
+        return sorted(
+            cell for cell in self._cells if (cell in across) != (cell in down)
+        )
 
     def direction_at(self, cell: Cell) -> str | None:
         """Direction of the one word covering an open cell."""
@@ -97,13 +100,22 @@ class Grid:
             return DOWN
         return None
 
-    def _expanded_bounds(self, row: int, col: int, last_r: int, last_c: int) -> tuple[int, int, int, int]:
+    def _expanded_bounds(
+        self, row: int, col: int, last_r: int, last_c: int
+    ) -> tuple[int, int, int, int]:
         if self._bounds is None:
             return (row, col, last_r, last_c)
         low_r, low_c, high_r, high_c = self._bounds
-        return (min(low_r, row), min(low_c, col), max(high_r, last_r), max(high_c, last_c))
+        return (
+            min(low_r, row),
+            min(low_c, col),
+            max(high_r, last_r),
+            max(high_c, last_c),
+        )
 
-    def preview_placement(self, answer: str, row: int, col: int, direction: str) -> GridPreview | None:
+    def preview_placement(
+        self, answer: str, row: int, col: int, direction: str
+    ) -> GridPreview | None:
         """Return the resulting crossings and dimensions of grid if the word may be placed here, else None."""
         n = len(answer)
         if n < MIN_LENGTH or answer in self._answers:
@@ -161,7 +173,10 @@ class Grid:
         placed_entry = self._placed_entries.pop()
         for cell in placed_entry.occupied_cells():
             del self._occupied_by[placed_entry.direction][cell]
-            if cell not in self._occupied_by[ACROSS] and cell not in self._occupied_by[DOWN]:
+            if (
+                cell not in self._occupied_by[ACROSS]
+                and cell not in self._occupied_by[DOWN]
+            ):
                 del self._cells[cell]
         self._answers.discard(placed_entry.answer)
         self._bounds = self._bounds_history.pop()
