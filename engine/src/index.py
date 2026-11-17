@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from src.kana import invalid_reason
+from src.kana import invalid_reason, normalize
 
 LEVELS = ("n5", "n4", "n3")
 
@@ -39,6 +39,8 @@ def load_vocab(path: Path | str) -> list[Entry]:
             raise ValueError(f"{where}: bad answer {answer!r} ({reason})")
         if not clue.strip():
             raise ValueError(f"{where}: empty clue")
+        if clue != normalize(clue):
+            raise ValueError(f"{where}: clue is not NFC-normalized")
         if level not in LEVELS:
             raise ValueError(f"{where}: unknown level {level!r}")
         if answer in seen:
