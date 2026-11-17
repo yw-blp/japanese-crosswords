@@ -100,8 +100,8 @@ class Grid:
     def _expanded_bounds(self, row: int, col: int, last_r: int, last_c: int) -> tuple[int, int, int, int]:
         if self._bounds is None:
             return (row, col, last_r, last_c)
-        lo_r, lo_c, hi_r, hi_c = self._bounds
-        return (min(lo_r, row), min(lo_c, col), max(hi_r, last_r), max(hi_c, last_c))
+        low_r, low_c, high_r, high_c = self._bounds
+        return (min(low_r, row), min(low_c, col), max(high_r, last_r), max(high_c, last_c))
 
     def preview_placement(self, answer: str, row: int, col: int, direction: str) -> GridPreview | None:
         """Return the resulting crossings and dimensions of grid if the word may be placed here, else None."""
@@ -111,8 +111,8 @@ class Grid:
         dr, dc = DELTA[direction]
         last_r, last_c = row + (n - 1) * dr, col + (n - 1) * dc
 
-        lo_r, lo_c, hi_r, hi_c = self._expanded_bounds(row, col, last_r, last_c)
-        height, width = hi_r - lo_r + 1, hi_c - lo_c + 1
+        low_r, low_c, high_r, high_c = self._expanded_bounds(row, col, last_r, last_c)
+        height, width = high_r - low_r + 1, high_c - low_c + 1
         if height > self.max_height or width > self.max_width:
             return None
 
